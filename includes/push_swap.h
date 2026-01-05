@@ -6,7 +6,7 @@
 /*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 11:50:19 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/05 15:27:50 by salamoun         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:07:32 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+int ft_check_element(t_stack *stck, int start, int end);
+int ft_cost(t_stack *stack_b, int i);
 void	rrb(t_stack **stack_b);
 void	rb(t_stack **stack_b);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);

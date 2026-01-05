@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
+/*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-12-10 11:14:34 by slaaouin          #+#    #+#             */
-/*   Updated: 2025/12/25 13:50:26 by slaaouin         ###   ########.fr       */
+/*   Created: 2025/12/10 11:14:34 by slaaouin          #+#    #+#             */
+/*   Updated: 2026/01/05 18:12:18 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 long	*ft_bubble_sort(long arr[], long size)
@@ -36,30 +37,47 @@ long	*ft_bubble_sort(long arr[], long size)
 	return (arr);
 }
 
-int	ft_stack_size(t_stack *stack)
+int ft_cost(t_stack *stack_b, int i)
 {
-	int		size;
-	t_stack	*temp;
+	if(stack_b == NULL)
+		return -1;
+	int a;
 
-	size = 0;
-	temp = stack;
-	while (temp)
+	a = 0;
+	while(stack_b)
 	{
-		temp = temp->next;
-		size++;
+		if(stack_b->index == i)
+			return a;
+		else
+			stack_b = stack_b->next;
+		a++;
 	}
-	return (size);
+	return -1;
 }
 
-int	ft_totalbit(int a)
+int ft_check_element(t_stack *stck, int start, int end)
 {
-	int	r;
-
-	r = 0;
-	while (a > 0)
+	if(stck == NULL)
+		return -1;
+	int i;
+	i = 0;
+	while(stck)
 	{
-		a = a >> 1;
-		r++;
+		if((stck->index) >= start && (stck->index <= end))
+		{
+			return i;
+		}
+		stck = stck->next;
+		i++;
 	}
-	return (r);
+	return -1;
+}
+int chnk_size(int n)
+{
+	int z;
+	
+	z = (int)(2 * sqrt(n));
+	if(z < 15)
+		z = 15;
+	return z;
 }

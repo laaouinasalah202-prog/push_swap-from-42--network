@@ -6,7 +6,7 @@
 /*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:20:38 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/05 15:27:53 by salamoun         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:10:07 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ t_stack	*ft_new(int content)
 	result->index = 0;
 	result->next = NULL;
 	return (result);
+}
+
+int	ft_stack_size(t_stack *stack)
+{
+	int		size;
+	t_stack	*temp;
+
+	size = 0;
+	temp = stack;
+	while (temp)
+	{
+		temp = temp->next;
+		size++;
+	}
+	return (size);
 }
 
 t_stack	*ft_find_smallest(t_stack *stack)
@@ -72,14 +87,4 @@ void	put_index(long *n, t_stack **stack, int size)
 		*stack = (*stack)->next;
 	}
 	*stack = temp;
-}
-
-int chnk_size(int n)
-{
-	int z;
-	
-	z = (int)(2 * sqrt(n));
-	if(z < 15)
-		z = 15;
-	return z;
 }
