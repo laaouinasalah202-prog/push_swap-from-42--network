@@ -6,23 +6,41 @@
 /*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 11:16:17 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/05 18:36:40 by salamoun         ###   ########.fr       */
+/*   Updated: 2026/01/05 21:24:25 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// int position_cost(t_stack *satck, int value)
+// {
+// 	int size;
+// 	int pos;
+// 	int cost;
+
+// 	size = ft_stack_size(stack);
+// 	pos = ft_position(stack, value);
+
+// 	if(pos > size / 2)
+// 		cost = size - pos;
+// 	else
+// 		cost = pos;
+
+// 	return cost;
+
+// }
+
 void ft_back_a(t_stack **a, t_stack **b,int size)
 {
 	int i;
-	int cost;
+	int pos;
 	
 	i = size - 1;
 	while(i >= 0 && ft_stack_size(*b) > 0)
 	{
 		size = ft_stack_size(*b);
-		cost = ft_cost(*b, i);
-		if(cost > size / 2)
+		pos = ft_position(*b, i);
+		if(pos > size / 2) 
 		{
 			while(1)
 			{
@@ -35,7 +53,7 @@ void ft_back_a(t_stack **a, t_stack **b,int size)
 					rrb(b);
 			}
 		}
-		else if (cost <= size/2)
+		else if (pos <= size/2)
 		{
 			while(1)
 			{
@@ -60,7 +78,7 @@ void ft_chunk(t_stack **a, t_stack **b)
 	int i, end, start, z;
 	size = ft_stack_size(*a);
 	if(size == 100)
-		chunk_size = 19;
+		chunk_size = 20;
 	else if(size == 500)
 		chunk_size = 50;
 	else
@@ -69,11 +87,15 @@ void ft_chunk(t_stack **a, t_stack **b)
 	while(i < size)
 	{
 		start = i;
-		end = i + chunk_size - 1;
+		end = i + chunk_size;
 		while(ft_check_element(*a, start, end) != -1)
 		{
 			if(((*a)->index) >= start && ((*a)->index <= end))
+			{
 				pb(a, b);
+			    if ((*b)->index > (start + end) / 2) // optimization
+        			rb(b); 
+			}
 			else
 			{
 				z = ft_check_element(*a, start, end);
@@ -86,7 +108,7 @@ void ft_chunk(t_stack **a, t_stack **b)
 			}
 				
 		}
-		i += chunk_size - 1;
+		i += chunk_size;
 	}
 	ft_back_a(a, b, size);
 }

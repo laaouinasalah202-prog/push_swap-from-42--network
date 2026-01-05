@@ -6,7 +6,7 @@
 /*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 11:14:34 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/05 18:12:18 by salamoun         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:30:45 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long	*ft_bubble_sort(long arr[], long size)
 	return (arr);
 }
 
-int ft_cost(t_stack *stack_b, int i)
+int ft_position(t_stack *stack_b, int i)
 {
 	if(stack_b == NULL)
 		return -1;

@@ -6,7 +6,7 @@
 /*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 11:50:19 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/05 18:07:32 by salamoun         ###   ########.fr       */
+/*   Updated: 2026/01/05 21:15:52 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_stack
 }	t_stack;
 
 int ft_check_element(t_stack *stck, int start, int end);
-int ft_cost(t_stack *stack_b, int i);
+int ft_position(t_stack *stack_b, int i);
 void	rrb(t_stack **stack_b);
 void	rb(t_stack **stack_b);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
@@ -55,5 +55,6 @@ char	**ft_split(char const *s, char c);
 void	put_to_stack(long *nbrs, t_stack **head, int size);
 void	sort_small(t_stack **stack_a, t_stack **stack_b, int size);
 long	*ft_bubble_sort(long arr[], long size);
+void	rr(t_stack **stack_a, t_stack **stack_b);
 
 #endif
