@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
+/*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-12-14 13:10:45 by slaaouin          #+#    #+#             */
-/*   Updated: 2025-12-25 11:17:40 by slaaouin         ###   ########.fr       */
+/*   Created: 2025/12/14 13:10:45 by slaaouin          #+#    #+#             */
+/*   Updated: 2026/01/05 16:52:09 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ra(t_stack **stack_a)
 
 void	rb(t_stack **stack_b)
 {
+	write(1, "rb\n", 3);
 	rotate(stack_b);
 }
 

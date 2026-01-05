@@ -3,38 +3,149 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
+/*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-12-15 11:16:17 by slaaouin          #+#    #+#             */
-/*   Updated: 2025/12/25 16:23:04 by slaaouin         ###   ########.fr       */
+/*   Created: 2025/12/15 11:16:17 by slaaouin          #+#    #+#             */
+/*   Updated: 2026/01/05 17:44:30 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
+// static void	radix(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	size;
+// 	int	maxbit;
 
-static void	radix(t_stack **stack_a, t_stack **stack_b)
+// 	size = ft_stack_size(*stack_a);
+// 	maxbit = ft_totalbit(size - 1);
+// 	i = 0;
+// 	while (i < maxbit)
+// 	{
+// 		j = 0;
+// 		while (j < size)
+// 		{
+// 			if ((((*stack_a)->index >> i) & 1) == 0)
+// 				pb(stack_a, stack_b);
+// 			else
+// 				ra(stack_a);
+// 			j++;
+// 		}
+// 		while (*stack_b)
+// 			pa(stack_b, stack_a);
+// 		i++;
+// 	}
+// }
+#include <stdio.h>
+int ft_cost(t_stack *stack_b, int i)
 {
-	int	i;
-	int	j;
-	int	size;
-	int	maxbit;
+	if(stack_b == NULL)
+		return -1;
+	int a;
 
-	size = ft_stack_size(*stack_a);
-	maxbit = ft_totalbit(size - 1);
-	i = 0;
-	while (i < maxbit)
+	a = 0;
+	while(stack_b)
 	{
-		j = 0;
-		while (j < size)
+		if(stack_b->index == i)
+			return a;
+		else
+			stack_b = stack_b->next;
+		a++;
+	}
+	return -1;
+}
+
+int ft_check_element(t_stack *stck, int start, int end)
+{
+	if(stck == NULL)
+		return -1;
+	int i;
+	i = 0;
+	while(stck)
+	{
+		if((stck->index) >= start && (stck->index <= end))
 		{
-			if ((((*stack_a)->index >> i) & 1) == 0)
-				pb(stack_a, stack_b);
-			else
-				ra(stack_a);
-			j++;
+			return i;
 		}
-		while (*stack_b)
-			pa(stack_b, stack_a);
+		stck = stck->next;
 		i++;
+	}
+	return -1;
+}
+
+
+void ft_chunk(t_stack **a, t_stack **b)
+{
+	int chunk_size;
+	int size;
+	int cost;
+	int i, end, start, z;
+	size = ft_stack_size(*a);
+	if(size == 100)
+		chunk_size = 20;
+	else if(size == 500)
+		chunk_size = 50;
+	else
+		chunk_size = chnk_size(size);
+	i = 0;
+	while(i < size)
+	{
+		start = i;
+		end = i + chunk_size - 1;
+		while(ft_check_element(*a, start, end) != -1)
+		{
+			if(((*a)->index) >= start && ((*a)->index <= end))
+			{
+				pb(a, b);
+			}
+			else
+			{
+				z = ft_check_element(*a, start, end);
+				if (z == -1)
+					break;
+				else if(z > (ft_stack_size(*a)/2))
+					rra(a);
+				else
+					ra(a);
+			}
+				
+		}
+		i += chunk_size - 1;
+	}
+	// push back to a;
+	i = size - 1;
+	while(i >= 0 && ft_stack_size(*b) > 0)
+	{
+		size = ft_stack_size(*b);
+		cost = ft_cost(*b, i);
+		if(cost > size / 2)
+		{
+			while(1)
+			{
+				if((*b)->index == i)
+				{
+					pa(b, a);
+						break;
+				}
+				else
+					rrb(b);
+			}
+		}
+		else if (cost <= size/2)
+		{
+			while(1)
+			{
+				if((*b)->index == i)
+				{
+					pa(b, a);
+						break;
+				}
+				else
+					rb(b);
+			}
+		}
+		i--;
 	}
 }
 
@@ -54,7 +165,7 @@ static void	ft_push_swap(int ac, char **av, long *stack)
 	{
 		stack = ft_bubble_sort(stack, size);
 		put_index(stack, &stack_a, size);
-		radix(&stack_a, &stack_b);
+		ft_chunk(&stack_a, &stack_b);
 	}
 	free(stack);
 	ft_free(&stack_a);

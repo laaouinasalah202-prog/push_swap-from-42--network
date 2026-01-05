@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
+/*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-12-15 13:37:31 by slaaouin          #+#    #+#             */
-/*   Updated: 2025-12-22 11:17:21 by slaaouin         ###   ########.fr       */
+/*   Created: 2025/12/15 13:37:31 by slaaouin          #+#    #+#             */
+/*   Updated: 2026/01/05 15:16:07 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	rra(t_stack **stack_a)
 
 void	rrb(t_stack **stack_b)
 {
+	write(1, "rrb\n", 4);
 	ft_reverse_rotate(stack_b);
 }
 

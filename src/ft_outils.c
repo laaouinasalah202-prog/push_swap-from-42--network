@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_Utils.c                                         :+:      :+:    :+:   */
+/*   ft_outils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
+/*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-12-18 13:20:38 by slaaouin          #+#    #+#             */
-/*   Updated: 2025-12-25 11:15:38 by slaaouin         ###   ########.fr       */
+/*   Created: 2025/12/18 13:20:38 by slaaouin          #+#    #+#             */
+/*   Updated: 2026/01/05 15:27:53 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,14 @@ void	put_index(long *n, t_stack **stack, int size)
 		*stack = (*stack)->next;
 	}
 	*stack = temp;
+}
+
+int chnk_size(int n)
+{
+	int z;
+	
+	z = (int)(2 * sqrt(n));
+	if(z < 15)
+		z = 15;
+	return z;
 }

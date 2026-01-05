@@ -22,7 +22,7 @@ OBJS = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)    
+	$(CC) $(CFLAGS) $(OBJS) -lm $(LIBFT) -o $(NAME)    
  
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	mkdir -p $(OBJ_PATH)

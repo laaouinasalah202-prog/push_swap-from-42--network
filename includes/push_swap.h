@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
+/*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-12-25 11:50:19 by slaaouin          #+#    #+#             */
-/*   Updated: 2025/12/29 10:29:57 by slaaouin         ###   ########.fr       */
+/*   Created: 2025/12/25 11:50:19 by slaaouin          #+#    #+#             */
+/*   Updated: 2026/01/05 15:27:50 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
+
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include "../libft/libft.h"
-
+#include <math.h>
 typedef struct s_stack
 {
 	int				value;
@@ -23,10 +25,13 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+void	rrb(t_stack **stack_b);
+void	rb(t_stack **stack_b);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
 t_stack	*ft_lstnew(int value, int index);
 t_stack	*ft_new(int content);
+int chnk_size(int n);
 t_stack	*ft_find_smallest(t_stack *stack);
 void	ft_free(t_stack **stack);
 void	sa(t_stack **stack_a);
