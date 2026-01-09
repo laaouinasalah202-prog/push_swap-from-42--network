@@ -19,26 +19,37 @@ push_swap instructions
     rrb: reverse rotate b - shift down all elements of stack b by 1. The last element becomes the first one.
     rrr: rra and rrb at the same time.
 
-Algorithm Choice: Radix Sort
+Algorithm Choice: Chunk-Based Sorting
 
-To efficiently sort large sets of numbers, this project implements a Radix Sort–based algorithm adapted to the constraints of the push_swap subject.
+To efficiently handle large input sizes and keep the number of operations low, this project uses a chunk-based sorting algorithm designed specifically for the constraints of the push_swap subject.
 
-Since the available operations are limited to stack manipulations, the algorithm first compresses the input values into indexed ranks. Each number is replaced by its position in the sorted order. This normalization removes negative values and reduces the maximum number of bits required, making the algorithm faster and more predictable.
+As a first step, all input values are compressed into indexed ranks. Each number is replaced by its position in the sorted order, which removes negative values and simplifies comparisons. This normalization creates a predictable range of values and makes it easier to divide the data into chunks.
 
-The sorting process then iterates over each bit of the indexed values, starting from the least significant bit. For each pass:
+The core idea behind the chunk algorithm is to split the full range of indexed values into smaller, manageable groups called chunks. Instead of sorting all values at once, the algorithm processes one chunk at a time.
 
-Numbers are examined at the top of stack a
+The sorting process works as follows:
 
-If the current bit is 0, the value is pushed to stack b
+The indexed value range is divided into several chunks, based on the total number of elements
 
-If the bit is 1, the value is rotated within stack a
+Starting with the smallest chunk, the algorithm scans stack a to find values that belong to the current range
 
-Once all elements have been processed for a given bit, all values from stack b are pushed back to stack a
+When a value from the active chunk reaches the top of stack a, it is pushed to stack b
 
-This procedure is repeated until all bits have been processed, resulting in a fully sorted stack.
+Stack a is rotated as needed to bring target values to the top using the fewest possible operations
 
-For small input sizes, the project uses dedicated sorting logic instead of Radix Sort to minimize the number of operations. Radix Sort is therefore reserved for larger inputs, where it provides better performance and scalability.
+Once all values from a chunk have been moved to stack b, the algorithm moves on to the next chunk
 
+After all chunks have been transferred to stack b, the algorithm rebuilds the sorted stack:
+
+The largest value in stack b is located
+
+Stack b is rotated until this value reaches the top
+
+The value is then pushed back to stack a
+
+This step is repeated until stack b is empty. By always pushing the largest remaining value first, stack a is rebuilt in ascending order.
+
+For small input sizes, the project relies on specialized sorting routines to avoid unnecessary operations. The chunk-based approach is therefore reserved for larger datasets, where breaking the problem into smaller ranges leads to better performance and a more efficient operation count.
 
 Compilation
 run make
@@ -47,10 +58,9 @@ Execution
 push_swap: ./push_swap 0 2 3 1
 
 Resources
-https://www.geeksforgeeks.org/dsa/radix-sort/
-https://en.wikipedia.org/wiki/Radix_sort
-https://visualgo.net/en
+https://en.wikipedia.org/wiki/Chunking_(computing)
 https://github.com/o-reo/push_swap_visualizer
+https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
 
 AI Usage :
 
