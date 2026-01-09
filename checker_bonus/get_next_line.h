@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-15 19:07:02 by slaaouin          #+#    #+#             */
-/*   Updated: 2025/10/22 17:49:11 by slaaouin         ###   ########.fr       */
+/*   Created: 2025-11-08 20:19:52 by slaaouin          #+#    #+#             */
+/*   Updated: 2025-11-08 20:19:52 by slaaouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
+# include <stdlib.h>
+# include <unistd.h>
 
-	i = 0;
-	while ((char)c != s[i])
-	{
-		if (!s[i])
-			return (NULL);
-		i++;
-	}
-	return ((char *)s + i);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+int		ft_strchr1(char *s, char c);
+char	*ft_strjoin1(char *s1, char *s2);
+char	*ft_strdup1(char *s);
+char	*get_next_line(int fd);
+
+#endif

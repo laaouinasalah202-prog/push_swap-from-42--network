@@ -47,7 +47,7 @@ void	ft_free(t_stack **stack)
 	}
 }
 
-long	ft_isorted(long *arr, int size)
+int		ft_isorted(long *arr, int size)
 {
 	int	i;
 

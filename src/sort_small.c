@@ -17,7 +17,7 @@ void	sort_two(t_stack **stack)
 	if ((*stack)->next == NULL)
 		return ;
 	if ((*stack)->value > ((*stack)->next)->value)
-		sa(stack);
+		sa(stack, 1);
 }
 
 void	sort_three(t_stack **stack)
@@ -30,21 +30,21 @@ void	sort_three(t_stack **stack)
 	b = (*stack)->next->value;
 	c = (*stack)->next->next->value;
 	if (a > b && b < c && a < c)
-		sa(stack);
+		sa(stack, 1);
 	else if (a > b && b > c && a > c)
 	{
-		sa(stack);
-		rra(stack);
+		sa(stack, 1);
+		rra(stack, 1);
 	}
 	else if (a > b && b < c && a > c)
-		ra(stack);
+		ra(stack, 1);
 	else if (a < b && b > c && a < c)
 	{
-		sa(stack);
-		ra(stack);
+		sa(stack, 1);
+		ra(stack, 1);
 	}
 	else if (a < b && b > c && a > c)
-		rra(stack);
+		rra(stack, 1);
 }
 
 void	sort_ff(t_stack **stack_a, t_stack **stack_b, int size)
@@ -58,15 +58,15 @@ void	sort_ff(t_stack **stack_a, t_stack **stack_b, int size)
 		small = ft_find_smallest(*stack_a);
 		if (small->index > size / 2)
 			while (*stack_a != small)
-				rra(stack_a);
+				rra(stack_a, 1);
 		else
 			while (*stack_a != small)
-				ra(stack_a);
-		pb(stack_a, stack_b);
+				ra(stack_a, 1);
+		pb(stack_a, stack_b, 1);
 	}
 	sort_three(stack_a);
 	while (*stack_b)
-		pa(stack_b, stack_a);
+		pa(stack_b, stack_a, 1);
 }
 
 void	sort_foor(t_stack **stack_a, t_stack **stack_b)
@@ -83,10 +83,10 @@ void	sort_foor(t_stack **stack_a, t_stack **stack_b)
 		temp = temp->next;
 	}
 	while (*stack_a != small)
-		ra(stack_a);
-	pb(stack_a, stack_b);
+		ra(stack_a, 1);
+	pb(stack_a, stack_b, 1);
 	sort_three(stack_a);
-	pa(stack_b, stack_a);
+	pa(stack_b, stack_a, 1);
 }
 
 void	sort_small(t_stack **stack_a, t_stack **stack_b, int size)

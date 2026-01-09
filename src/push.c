@@ -24,18 +24,20 @@ static void	push(t_stack **stack_from, t_stack **stack_to)
 	*stack_to = temp;
 }
 
-void	pa(t_stack **stack_b, t_stack **stack_a)
+void	pa(t_stack **stack_b, t_stack **stack_a, int i)
 {
 	if (!stack_b || !*stack_b)
 		return ;
 	push(stack_b, stack_a);
-	write(1, "pa\n", 3);
+	if (i)
+		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack **stack_a, t_stack **stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b , int i)
 {
 	if (!stack_a || !*stack_a)
 		return ;
 	push(stack_a, stack_b);
-	write(1, "pb\n", 3);
+	if (i)
+		write(1, "pb\n", 3);
 }

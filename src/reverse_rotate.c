@@ -30,15 +30,17 @@ static void	ft_reverse_rotate(t_stack **stack)
 	(*stack)->next = temp;
 }
 
-void	rra(t_stack **stack_a)
+void	rra(t_stack **stack_a, int i)
 {
 	ft_reverse_rotate(stack_a);
-	write(1, "rra\n", 4);
+	if (i)
+		write(1, "rra\n", 4);
 }
 
-void	rrb(t_stack **stack_b)
+void	rrb(t_stack **stack_b, int i)
 {
-	write(1, "rrb\n", 4);
+	if (i)
+		write(1, "rrb\n", 4);
 	ft_reverse_rotate(stack_b);
 }
 

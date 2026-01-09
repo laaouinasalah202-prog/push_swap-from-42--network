@@ -72,12 +72,14 @@ int ft_check_element(t_stack *stck, int start, int end)
 	}
 	return -1;
 }
-int chnk_size(int n)
+
+int chnk_size(int size)
 {
-	int z;
-	
-	z = (int)(2 * sqrt(n));
-	if(z < 15)
-		z = 15;
-	return z;
+	int chunk_size;
+
+	if (size == 100)
+		chunk_size = 15;
+	else
+		chunk_size = 35;
+	return chunk_size;
 }

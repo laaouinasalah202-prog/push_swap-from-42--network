@@ -9,106 +9,77 @@
 /*   Updated: 2026/01/05 21:24:25 by salamoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-// int position_cost(t_stack *satck, int value)
-// {
-// 	int size;
-// 	int pos;
-// 	int cost;
-
-// 	size = ft_stack_size(stack);
-// 	pos = ft_position(stack, value);
-
-// 	if(pos > size / 2)
-// 		cost = size - pos;
-// 	else
-// 		cost = pos;
-
-// 	return cost;
-
-// }
-
-void ft_back_a(t_stack **a, t_stack **b,int size)
+int  push_helper(t_stack **b, t_stack **a, int i)
 {
-	int i;
-	int pos;
-	
+	if ((*b)->index == i)
+	{
+		pa(b, a, 1);
+		return (-1);
+	}
+	else
+		rrb(b, 1);
+	return (0);
+}
+
+void	ft_back_a(t_stack **a, t_stack **b, int size)
+{
+	int	i;
+
 	i = size - 1;
-	while(i >= 0 && ft_stack_size(*b) > 0)
+	while (i >= 0 && ft_stack_size(*b) > 0)
 	{
 		size = ft_stack_size(*b);
-		pos = ft_position(*b, i);
-		if(pos > size / 2) 
+		if (ft_position(*b, i) > size / 2)
 		{
-			while(1)
+			while (1)
 			{
-				if((*b)->index == i)
-				{
-					pa(b, a);
-						break;
-				}
-				else
-					rrb(b);
+				if(push_helper(b, a, i) == -1)
+					break;
 			}
 		}
-		else if (pos <= size/2)
+		else if (ft_position(*b, i) <= size / 2)
 		{
-			while(1)
+			while (1)
 			{
-				if((*b)->index == i)
+				if ((*b)->index == i)
 				{
-					pa(b, a);
-						break;
+					pa(b, a, 1);
+						break ;
 				}
 				else
-					rb(b);
+					rb(b, 1);
 			}
 		}
 		i--;
 	}
 }
 
-
-void ft_chunk(t_stack **a, t_stack **b)
+void	ft_chunk(t_stack **a, t_stack **b)
 {
-	int chunk_size;
-	int size;
-	int i, end, start, z;
+	int	chunk_size;
+	int	size;
+	int	i;
+
 	size = ft_stack_size(*a);
-	if(size == 100)
-		chunk_size = 20;
-	else if(size == 500)
-		chunk_size = 50;
-	else
-		chunk_size = chnk_size(size);
+	chunk_size = chnk_size(size);
 	i = 0;
-	while(i < size)
+	while (*a)
 	{
-		start = i;
-		end = i + chunk_size;
-		while(ft_check_element(*a, start, end) != -1)
+		if ((*a)->index <= i)
 		{
-			if(((*a)->index) >= start && ((*a)->index <= end))
-			{
-				pb(a, b);
-			    if ((*b)->index > (start + end) / 2) // optimization
-        			rb(b); 
-			}
-			else
-			{
-				z = ft_check_element(*a, start, end);
-				if (z == -1)
-					break;
-				else if(z > (ft_stack_size(*a)/2))
-					rra(a);
-				else
-					ra(a);
-			}
-				
+			pb(a, b, 1);
+			rb(b, 1);
+			i++;
 		}
-		i += chunk_size;
+		else if ((*a)->index <= i + chunk_size)
+		{
+			pb(a, b, 1);
+			i++;
+		}
+		else
+			ra(a, 1);
 	}
 	ft_back_a(a, b, size);
 }
