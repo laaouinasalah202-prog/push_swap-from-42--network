@@ -6,12 +6,12 @@
 /*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-11-08 20:13:08 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/09 08:37:40 by slaaouin         ###   ########.fr       */
+/*   Updated: 2026/01/10 11:20:57 by slaaouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "checker_bonus.h"
 
-char	*ft_extract_line(char *str, int *index)
+static char	*ft_extract_line(char *str, int *index)
 {
 	char	*line;
 	int		i;
@@ -40,7 +40,7 @@ char	*ft_extract_line(char *str, int *index)
 	return (line);
 }
 
-char	*ft_read_file(int fd, char *buff)
+static char	*ft_read_file(int fd, char *buff)
 {
 	char	*buffer;
 	ssize_t	bytes;
@@ -79,15 +79,11 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	index = 0;
-	if (!buff)
+	if (!buff || !*buff)
 		buff = ft_strdup1("");
 	buff = ft_read_file(fd, buff);
 	if (!buff || !*buff)
-	{
-		free(buff);
-		buff = NULL;
-		return (NULL);
-	}
+		return (free(buff), buff = NULL, NULL);
 	line = ft_extract_line(buff, &index);
 	tp = ft_strdup1(&buff[index]);
 	free(buff);

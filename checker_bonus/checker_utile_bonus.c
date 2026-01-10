@@ -6,10 +6,10 @@
 /*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-11-08 20:27:27 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/09 08:40:34 by slaaouin         ###   ########.fr       */
+/*   Updated: 2026/01/10 11:34:26 by slaaouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "checker_bonus.h"
 
 int	ft_strchr1(char *s, char c)
 {
@@ -25,7 +25,7 @@ int	ft_strchr1(char *s, char c)
 	return (0);
 }
 
-int	ft_strlen1(char *str)
+static int	ft_strlen1(char *str)
 {
 	int	i;
 
@@ -62,21 +62,16 @@ char	*ft_strjoin1(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	i = 0;
-	if (s1)
-		i += ft_strlen1(s1);
-	i += ft_strlen1(s2) + 1;
-	result = malloc(sizeof(char) *  (i + 1));
+	if (!s1 || !s2)
+		return (NULL);
+	result = malloc(sizeof(char) * (ft_strlen1(s1) + ft_strlen1(s2) + 1));
 	if (!result)
 		return (NULL);
 	i = 0;
-	if (s1)
+	while (s1[i])
 	{
-		while (s1[i])
-		{
-			result[i] = s1[i];
-			i++;
-		}
+		result[i] = s1[i];
+		i++;
 	}
 	j = 0;
 	while (s2[j])

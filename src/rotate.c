@@ -6,7 +6,7 @@
 /*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:10:45 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/05 16:52:09 by salamoun         ###   ########.fr       */
+/*   Updated: 2026/01/10 10:42:32 by slaaouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ra(t_stack **stack_a, int i)
 void	rb(t_stack **stack_b, int i)
 {
 	rotate(stack_b);
-	if(i)
+	if (i)
 		write(1, "rb\n", 3);
 }
 
@@ -59,6 +59,6 @@ void	rr(t_stack **stack_a, t_stack **stack_b, int i)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	if(i)
-		write(1, "rr\n", 3);	
+	if (i)
+		write(1, "rr\n", 3);
 }

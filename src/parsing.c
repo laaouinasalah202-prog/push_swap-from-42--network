@@ -15,29 +15,33 @@ static int	ft_isnumber(char *str)
 {
 	int	i;
 	int	n;
+   int count;
 
+   count = 0;
 	n = 1;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' && str[i + 1] && str[i + 1] != ' ')
+		if (str[i] == ' ')
 		{
 			n = 1;
 			i++;
 		}
-		else if ((str[i] == '-' || str[i] == '+') && n == 1)
+		else if ((str[i] == '-' || str[i] == '+')
+			&& ft_isdigit(str[i + 1]) && n == 1)
 		{
 			n = 0;
 			i++;
 		}
-		else if (str[i] >= '0' && str[i] <= '9')
+		else if (str[i] >= '0' && str[i++] <= '9')
 		{
-			i++;
+			n = 0;
+			count++;
 		}
 		else
 			return (1);
 	}
-	return (0);
+	return (count == 0);
 }
 
 static int	ft_check_double(int n, long *str)

@@ -6,7 +6,7 @@
 /*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-12-17 15:13:50 by slaaouin          #+#    #+#             */
-/*   Updated: 2025-12-25 11:16:59 by slaaouin         ###   ########.fr       */
+/*   Updated: 2026/01/10 10:10:07 by slaaouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	pa(t_stack **stack_b, t_stack **stack_a, int i)
 		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack **stack_a, t_stack **stack_b , int i)
+void	pb(t_stack **stack_a, t_stack **stack_b, int i)
 {
 	if (!stack_a || !*stack_a)
 		return ;

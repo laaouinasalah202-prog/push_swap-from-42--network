@@ -2,8 +2,8 @@ COMMON_SRC = src/parsing.c  src/ft_outils.c \
       src/swap.c src/push.c src/rotate.c src/reverse_rotate.c \
       src/ft_sort.c src/ft_utils.c  src/space.c \
 
-BONUS_SRC =  checker_bonus/checker_utile.c\
-	      checker_bonus/get_next_line.c checker_bonus/get_next_line_utils.c
+BONUS_SRC =  checker_bonus/checker_bonus.c\
+	      checker_bonus/checker_utile1_bonus.c checker_bonus/checker_utile_bonus.c
 
 SRC = src/main.c src/sort_small.c 
 
@@ -41,11 +41,11 @@ $(BONUS): $(BONUS_OBJS) $(COMMOB_OBJS)
 	$(CC) $(FLAGS) $(BONUS_OBJS) $(COMMOB_OBJS) $(LIBFT) -o $(BONUS)
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS) $(COMMOB_OBJS)
+	rm -rf $(OBJS) $(BONUS_OBJS) $(COMMOB_OBJS)
 	make clean -C $(LIBFT_PATH)
 
 fclean: clean
-	rm -f $(BONUS) $(NAME) 
+	rm -rf $(BONUS) $(NAME) 
 	make fclean -C $(LIBFT_PATH)
 
 re: fclean all

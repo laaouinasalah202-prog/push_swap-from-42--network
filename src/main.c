@@ -6,12 +6,12 @@
 /*   By: salamoun <salamoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 11:16:17 by slaaouin          #+#    #+#             */
-/*   Updated: 2026/01/05 21:24:25 by salamoun         ###   ########.fr       */
+/*   Updated: 2026/01/10 09:56:09 by slaaouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int  push_helper(t_stack **b, t_stack **a, int i)
+static int	push_helper(t_stack **b, t_stack **a, int i)
 {
 	if ((*b)->index == i)
 	{
@@ -28,29 +28,17 @@ void	ft_back_a(t_stack **a, t_stack **b, int size)
 	int	i;
 
 	i = size - 1;
-	while (i >= 0 && ft_stack_size(*b) > 0)
+	while (i >= 0 && ft_stack_size(*b))
 	{
 		size = ft_stack_size(*b);
 		if (ft_position(*b, i) > size / 2)
+			while (push_helper(b, a, i) != -1)
+				;
+		else
 		{
-			while (1)
-			{
-				if(push_helper(b, a, i) == -1)
-					break;
-			}
-		}
-		else if (ft_position(*b, i) <= size / 2)
-		{
-			while (1)
-			{
-				if ((*b)->index == i)
-				{
-					pa(b, a, 1);
-						break ;
-				}
-				else
-					rb(b, 1);
-			}
+			while ((*b)->index != i)
+				rb(b, 1);
+			pa(b, a, 1);
 		}
 		i--;
 	}

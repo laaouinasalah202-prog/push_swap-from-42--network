@@ -6,7 +6,7 @@
 /*   By: slaaouin <slaaouin@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025-12-15 11:15:12 by slaaouin          #+#    #+#             */
-/*   Updated: 2025-12-19 1:00:12 by slaaouin         ###   ########.fr       */
+/*   Updated: 2026/01/10 10:04:35 by slaaouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_free(t_stack **stack)
 	}
 }
 
-int		ft_isorted(long *arr, int size)
+int	ft_isorted(long *arr, int size)
 {
 	int	i;
 
